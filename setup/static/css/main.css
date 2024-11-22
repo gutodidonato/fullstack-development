@@ -1,0 +1,37 @@
+/* Import all CSS files */
+@import './sections/base.css';
+@import './sections/animations.css';
+@import './sections/about.css';
+@import './sections/components.css';
+@import './sections/header.css';
+
+:root {
+    --primary: #00ff41;
+    --secondary: #0ef;
+    --accent: #b829ff;
+    --bg: #0a0a0a;
+    --text: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --bg-primary: #0a0e17;
+    --bg-secondary: #1a2332;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-purple: #8b5cf6;
+    --accent-pink: #ec4899;
+    --transition: all 0.3s ease;
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
