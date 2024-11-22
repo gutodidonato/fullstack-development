@@ -14,10 +14,14 @@ def index(request):
     projetos_destaque = Projeto.objects
     
     try:
-        linguagem_categoria = SkillCategory.objects.get(name="linguagens")
+        linguagem_categoria = SkillCategory.objects.get(name="linguagem")
         skills_linguagem = Skill.objects.filter(
             skill_category=linguagem_categoria,
             ativo=True)
+        
+        numero_linguagens = len(list(skills_linguagem))
+        
+  
         
         
         framework_categoria = SkillCategory.objects.get(name="framework")
