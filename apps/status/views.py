@@ -19,15 +19,17 @@ def index(request):
             skill_category=linguagem_categoria,
             ativo=True)
         
-        numero_linguagens = len(list(skills_linguagem))
+        print(linguagem_categoria)
+        print(skills_linguagem)
         
   
-        
+        '''
         
         framework_categoria = SkillCategory.objects.get(name="framework")
         skills_framework = Skill.objects.filter(
             skill_category=framework_categoria,
             ativo=True)
+        '''
     except:
         skills_linguagem = []
         skills_framework = []
@@ -42,10 +44,14 @@ def index(request):
     context = {
         'status_destaque': status_destaque,
         'projetos_destaque': projetos_destaque,
-        'linguagens': skills_linguagem
+        'linguagens': skills_linguagem,
+        'time_linguagens': len(skills_linguagem) * 2
     }
     
     return render(request, 'base/index.html', context)
+
+def projeto(request):
+    return render(request, 'projetos/index.html')
 
 
 

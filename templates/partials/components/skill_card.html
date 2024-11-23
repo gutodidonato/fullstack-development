@@ -1,33 +1,40 @@
 {% load static %}
-<div class="content">
-    <div class="back">
-        <div class="back-content">
-            <img src="img/skills/12705616.jpg" alt="">
-            <strong>Python</strong>
+{% if cardlevel >= 5 %}
+<div class="card-content red">
+{% elif cardlevel >= 4 %}
+<div class="card-content blue">
+{% elif cardlevel >= 3 %}    
+<div class="card-content yellow">
+{% else %}    
+<div class="card-content green">
+{% endif %}
+    <div class="content">
+        <div class="back">
+            <div class="back-content">
+                <img src="{{ cardimage }}" alt="">
+                <strong>
+                    {{ cardname }}
+                </strong>
+            </div>
         </div>
-    </div>
-    <div class="front">
-
-        <div class="img">
-            <div class="circle">
+        <div class="front">
+            <div class="img">
+                <div class="circle"></div>
+                <div class="circle" id="right"></div>
+                <div class="circle" id="bottom"></div>
             </div>
-            <div class="circle" id="right">
-            </div>
-            <div class="circle" id="bottom">
-            </div>
-        </div>
-
-        <div class="front-content">
-            <small class="escudo">Pasta</small>
-            <div class="description">
-                <div class="title">
-                    <p class="title">
-                        <strong>Spaguetti Bolognese</strong>
-                    </p>
+            <div class="front-content">
+                <small class="escudo">{{ cardname }}</small>
+                <div>
+                    <img src="" alt="">
                 </div>
-                <p class="card-footer">
-                    30 Mins &nbsp; | &nbsp; 1 Serving
-                </p>
+                <div class="description">
+                    <div class="title">
+                        <p class="title">
+                            {{ carddescription }}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
