@@ -10,17 +10,32 @@ class Projeto(models.Model):
     imagem_inicio = models.ImageField(
         upload_to='projeto/start', blank=True
     )
+    texto = CKEditor5Field(
+        'descricao', config_name='extends'
+    )
+    
     link_github= models.CharField(max_length=255, blank=True)
     link_demo= models.CharField(max_length=255, blank=True)
     
+    data_inicio = models.TextField(blank=True)
+    data_fim = models.TextField(blank=True)
+    cliente = models.TextField(blank=True)
+    categoria = models.TextField(blank=True)
     
     
-    imagem_central = models.ImageField(
-        upload_to='projeto/imagem_central', blank=True
+    imagem_galeria_1 = models.ImageField(
+        upload_to='projeto/imagem_galeria', blank=True
     )
-    descricao = CKEditor5Field(
-        'descricao', config_name='extends'
+    imagem_galeria_2 = models.ImageField(
+        upload_to='projeto/imagem_galeria', blank=True
     )
+    imagem_galeria_3 = models.ImageField(
+        upload_to='projeto/imagem_galeria', blank=True
+    )
+    imagem_galeria_4 = models.ImageField(
+        upload_to='projeto/imagem_galeria', blank=True
+    )
+    
     ativo = models.BooleanField(default=True)
     pos_destaque = models.IntegerField(blank=True, null=True, default=5)
 
