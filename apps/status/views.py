@@ -50,12 +50,6 @@ def index(request):
     
     return render(request, 'base/index.html', context)
 
-def projeto(request):
-    return render(request, 'projetos/index.html')
-
-def listagem_projeto(request):
-    return render(request, 'projetos/listagem.html')
-
 
 '''def contato(request):
     form = ContactForms()

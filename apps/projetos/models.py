@@ -3,10 +3,24 @@ from ..skills.models import Skill
 from django.utils import timezone
 from django_ckeditor_5.fields import CKEditor5Field
 
+class CategoriaProjeto(models.Model):
+    nome = models.CharField(max_length=255)
+    ativo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return self.nome
+    
 class Projeto(models.Model):
+    categoria_projeto = models.ForeignKey(
+        CategoriaProjeto, on_delete=models.SET_NULL, related_name='projetos', null=True, blank=True
+    )
+    skills = models.ManyToManyField(
+        Skill, related_name='projeto', blank=True
+    )
+    
+    
     nome = models.CharField(max_length=255, blank=True)
     resumo = models.TextField(blank=True)
-    skills = models.ManyToManyField(Skill, related_name='projeto', blank=True)
     imagem_inicio = models.ImageField(
         upload_to='projeto/start', blank=True
     )

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from ..projetos.models import Projeto
+from ..projetos.models import Projeto, CategoriaProjeto
 
 @admin.register(Projeto)
 class ProjetoAdmin(admin.ModelAdmin):
@@ -10,3 +10,10 @@ class ProjetoAdmin(admin.ModelAdmin):
     list_editable = ('ativo',)
     
     
+@admin.register(CategoriaProjeto)
+class ProjetoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'ativo', )
+    list_filter = ('nome', 'ativo', )
+    search_fields = ('nome', 'ativo', )
+    list_editable = ('ativo', )  
+    list_display_links = ('nome', )
