@@ -37,7 +37,8 @@ def index(request):
     
     
     
-    
+    for skill in skills_linguagem:
+        print(skill.imagem_inicio.url)
     
     
     

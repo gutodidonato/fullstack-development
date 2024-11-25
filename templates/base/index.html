@@ -52,7 +52,13 @@
                     ">
                     {% for skill in linguagens %}
                     <li class="reverse" style="--index: {{ forloop.counter }}">
-                        {% include 'partials/components/skill_card.html' with cardname=skill.name cardlevel=skill.level cardimage=skill.imagem_inicio.url carddescription=skill.resumo %}
+                        {% if skill.imagem_inicio and skill.imagem_inicio.url %}
+
+                            {% include 'partials/components/skill_card.html' with cardname=skill.name cardlevel=skill.level cardimage=skill.imagem_inicio.url carddescription=skill.resumo %}
+                        {% else %}
+                        <p>Sem imagem associada a esta skill.</p>
+                    {% endif %}
+            
                     </li>
                     {% endfor %}
                 </ul>

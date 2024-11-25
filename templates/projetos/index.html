@@ -4,13 +4,10 @@
 <main class="project-main">
     <div class="project-controller">
         <div class="project-header">
-            <h1 class="project-title">Projeto Inovador</h1>
-            <p class="project-subtitle">Uma solução revolucionária para problemas complexos</p>
+            <h1 class="project-title">{{projeto.nome}}</h1>
+            <p class="project-subtitle">{{projeto.resumo}}</p>
         </div>
-        {{projeto.nome}}
-        {% for skill in skills %}
-            <p>{{skill.name}} -- {{skill.level}}</p>
-        {% endfor %}
+
         <div class="project-image-container">
             <img src="/placeholder.svg?height=400&width=1200" alt="Visão geral do Projeto Inovador" class="project-image">
         </div>
@@ -18,34 +15,30 @@
         <div class="project-details">
             <div class="project-info">
                 <p class="project-description">
-                    Este projeto inovador visa resolver problemas complexos utilizando tecnologias de ponta e abordagens criativas. 
-                    Através de uma combinação única de inteligência artificial, análise de dados e design centrado no usuário, 
-                    conseguimos criar uma solução que não apenas atende às necessidades atuais, mas também se adapta às demandas futuras.
+                    {{projeto.texto}}
                 </p>
                 <div class="tech-stack">
-                    <span class="tech-tag">React</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">MongoDB</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">Docker</span>
+                    {% for skill in skills %}
+                        <span class="tech-tag">{{skill.name}}</span>
+                    {% endfor %}
                 </div>
             </div>
             <div class="project-meta">
                 <div class="meta-item">
                     <span class="meta-label">Data de Início:</span>
-                    <span>01/03/2023</span>
+                    <span>{{projeto.data_inicio}}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Data de Conclusão:</span>
-                    <span>30/11/2023</span>
+                    <span>{{projeto.data_fim}}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Cliente:</span>
-                    <span>TechCorp Innovations</span>
+                    <span>{{projeto.cliente}}</span>
                 </div>
                 <div class="meta-item">
                     <span class="meta-label">Categoria:</span>
-                    <span>Inteligência Artificial</span>
+                    <span>{{projeto.categoria_projeto}}</span>
                 </div>
             </div>
         </div>
@@ -54,16 +47,24 @@
             <h2 class="gallery-title">Galeria do Projeto</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
-                    <img src="/placeholder.svg?height=150&width=200" alt="Interface do usuário do projeto" onclick="openModal(this.src, this.alt)">
+                    {% if projeto.imagem_galeria_1 %}
+                    <img src="{{projeto.imagem_galeria_1.url}}" alt="imagem_projeto">
+                    {% endif %}  
                 </div>
                 <div class="gallery-item">
-                    <img src="/placeholder.svg?height=150&width=200" alt="Diagrama de arquitetura do sistema" onclick="openModal(this.src, this.alt)">
+                    {% if projeto.imagem_galeria_2 %}
+                    <img src="{{projeto.imagem_galeria_2.url}}" alt="imagem_projeto">
+                    {% endif %}
                 </div>
                 <div class="gallery-item">
-                    <img src="/placeholder.svg?height=150&width=200" alt="Demonstração de análise de dados" onclick="openModal(this.src, this.alt)">
+                    {% if projeto.imagem_galeria_3 %}
+                    <img src="{{projeto.imagem_galeria_3.url}}" alt="imagem_projeto">
+                    {% endif %}
                 </div>
                 <div class="gallery-item">
-                    <img src="/placeholder.svg?height=150&width=200" alt="Equipe trabalhando no projeto" onclick="openModal(this.src, this.alt)">
+                    {% if projeto.imagem_galeria_4 %}
+                    <img src="{{projeto.imagem_galeria_4.url}}" alt="imagem_projeto">
+                    {% endif %}
                 </div>
             </div>
         </section>

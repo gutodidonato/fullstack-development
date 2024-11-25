@@ -11,70 +11,55 @@
         
         <main>
             <nav class="category-nav" aria-label="Categorias de Projetos">
-                <button class="category-btn" aria-pressed="true"><span>Todos</span></button>
-                
-                <button class="category-btn" aria-pressed="false"><span>Inteligência Artificial</span></button>
-                <button class="category-btn" aria-pressed="false"><span>Desenvolvimento Web</span></button>
-                <button class="category-btn" aria-pressed="false"><span>Mobile</span></button>
-                <button class="category-btn" aria-pressed="false"><span>IoT</span></button>
+                <a href="{% url 'listagem_projeto' %}" class="category-btn" aria-pressed="true">
+                    <span>Todos</span>
+                </a>
+                {% for categoria in categorias %}
+                    <a href="{% url 'listagem_projeto_categoria' categoria.id %}" class="category-btn" aria-pressed="false">
+                            <span>{{categoria.nome}}</span>
+                    </a>
+                {% endfor %}
             </nav>
             
             <section class="projects-grid">
+                {% for projeto in projetos %}
                 <article class="project-card">
-                    <img src="/placeholder.svg?height=200&width=300" alt="Visão geral do Projeto IA Assistente" class="project-image lazy" data-src="/placeholder.svg?height=200&width=300">
-                <div class="project-info">
-                    <h2 class="project-title">IA Assistente</h2>
-                    <p class="project-description">Um assistente virtual alimentado por IA para aumentar a produtividade.</p>
-                    <div class="project-tags">
-                        <span class="tag">Inteligência Artificial</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">TensorFlow</span>
+                    {% if projeto.imagem_inicio and projeto.imagem_inicio.url %}
+                    <img src="{{ projeto.imagem_inicio.url }}" alt="{{ projeto.nome }}" class="project-image lazy">
+                    {% endif %}
+                    <div class="project-info">
+                        <h2 class="project-title">{{ projeto.nome }}</h2>
+                        <p class="project-description">{{ projeto.resumo }}</p>
+                        <div class="project-tags">
+                            {% for skill in projeto.skills.all %}
+                                <span class="tag">{{ skill.name }}</span>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'projeto' projeto.id %}" class="view-project">Ver Projeto</a>
                     </div>
-                    <a href="#" class="view-project">Ver Projeto</a>
-                </div>
-            </article>
+                </article>
+                {% endfor %}
+                
             
-            <article class="project-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Visão geral do Projeto E-commerce Responsivo" class="project-image lazy" data-src="/placeholder.svg?height=200&width=300">
-                <div class="project-info">
-                    <h2 class="project-title">E-commerce Responsivo</h2>
-                    <p class="project-description">Plataforma de comércio eletrônico moderna e responsiva.</p>
-                    <div class="project-tags">
-                        <span class="tag">Desenvolvimento Web</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Node.js</span>
-                    </div>
-                    <a href="#" class="view-project">Ver Projeto</a>
-                </div>
-            </article>
-            
-            <article class="project-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Visão geral do Projeto App de Fitness" class="project-image lazy" data-src="/placeholder.svg?height=200&width=300">
-                <div class="project-info">
-                    <h2 class="project-title">App de Fitness</h2>
-                    <p class="project-description">Aplicativo móvel para rastreamento de exercícios e nutrição.</p>
-                    <div class="project-tags">
-                        <span class="tag">Mobile</span>
-                        <span class="tag">React Native</span>
-                        <span class="tag">Firebase</span>
-                    </div>
-                    <a href="#" class="view-project">Ver Projeto</a>
-                </div>
-            </article>
-            
-            <article class="project-card">
-                <img src="/placeholder.svg?height=200&width=300" alt="Visão geral do Projeto Casa Inteligente" class="project-image lazy" data-src="/placeholder.svg?height=200&width=300">
-                <div class="project-info">
-                    <h2 class="project-title">Casa Inteligente</h2>
-                    <p class="project-description">Sistema IoT para automação residencial e eficiência energética.</p>
-                    <div class="project-tags">
-                        <span class="tag">IoT</span>
-                        <span class="tag">Raspberry Pi</span>
-                        <span class="tag">MQTT</span>
-                    </div>
-                    <a href="#" class="view-project">Ver Projeto</a>
-                </div>
-            </article>
+
+        </section>
+        <div class="pagination">
+            <span class="step-links">
+                {% if insight.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ insight.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ insight.number }} of {{ insight.paginator.num_pages }}.
+                </span>
+        
+                {% if insight.has_next %}
+                    <a href="?page={{ insight.next_page_number }}">next</a>
+                    <a href="?page={{ insight.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
         </section>
 
         <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>

@@ -15,13 +15,13 @@ class Skill(models.Model):
     resumo = models.TextField()
     level = models.IntegerField(blank=True)
     imagem_inicio = models.ImageField(
-        upload_to='skills/logos', blank=True
+        upload_to='skills/logos', blank=True, null=True
     )
     ativo = models.BooleanField(default=True)
     
     
     imagem_central = models.ImageField(
-        upload_to='skills/imagem_central', blank=True
+        upload_to='skills/imagem_central', blank=True, null=True
     )
     descricao = CKEditor5Field('descricao', config_name='extends', blank=True, null=True)
     ativo = models.BooleanField(default=True)

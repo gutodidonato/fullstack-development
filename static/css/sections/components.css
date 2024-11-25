@@ -1397,6 +1397,7 @@ h1 {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    text-decoration: none;
 }
 
 .category-btn::before {
@@ -1607,4 +1608,85 @@ h1 {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
+}
+
+.step-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pagination-link {
+    color: var(--accent-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagination-link::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+    z-index: 0;
+}
+
+.pagination-link:hover::before,
+.pagination-link:focus::before {
+    width: 300px;
+    height: 300px;
+}
+
+.pagination-link:hover,
+.pagination-link:focus {
+    color: var(--bg-color);
+}
+
+.pagination-link span {
+    position: relative;
+    z-index: 1;
+}
+
+.current-page {
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 255, 0, 0.1);
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        padding: 0.5rem;
+    }
+
+    .step-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pagination-link,
+    .current-page {
+        text-align: center;
+    }
 }
