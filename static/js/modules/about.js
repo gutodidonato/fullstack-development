@@ -204,3 +204,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const projectsGrid = document.getElementById('projectsGrid');
+    const paginationContainer = document.getElementById('pagination');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            event.preventDefault();
+
+            const categoryId = button.getAttribute('data-id'); // Obtém o ID da categoria
+            loadingSpinner.style.display = 'block'; // Mostra o spinner de carregamento
+
+            console.log(categoryId)
+            console.log(`/projetos/${categoryId}}`)
+
+            fetch(`/projetos/${categoryId ? categoryId + '/' : ''}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest', // Necessário para a view reconhecer como AJAX
+                    'Content-Type': 'application/json', // Indica que esperamos um JSON na resposta
+                },
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Erro: ${response.status}`); // Captura o status HTTP (como 500)
+                    }
+                    return response.json(); // Tenta parsear a resposta como JSON
+                })
+                .then((data) => {
+                    // Insere os projetos e a paginação no DOM
+                    document.getElementById('projectsGrid').innerHTML = data.projects_html;
+                    document.getElementById('pagination').innerHTML = data.pagination_html;
+                })
+                .catch((error) => {
+                    console.error('Erro ao carregar os dados:', error); // Log do erro
+                });
+        });
+    });
+});

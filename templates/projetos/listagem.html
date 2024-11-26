@@ -10,18 +10,20 @@
         </div>
         
         <main>
-            <nav class="category-nav" aria-label="Categorias de Projetos">
-                <a href="{% url 'listagem_projeto' %}" class="category-btn" aria-pressed="true">
+            <div class="category-nav" aria-label="Categorias de Projetos">
+                <a href="{% url 'listagem_projeto' %}" class="category-btn" aria-pressed="true" data-id="">
                     <span>Todos</span>
                 </a>
                 {% for categoria in categorias %}
-                    <a href="{% url 'listagem_projeto_categoria' categoria.id %}" class="category-btn" aria-pressed="false">
-                            <span>{{categoria.nome}}</span>
+                    <a href="{% url 'listagem_projeto_categoria' categoria.id %}" 
+                       class="category-btn" aria-pressed="false" data-id="{{ categoria.id }}">
+                        <span>{{ categoria.nome }}</span>
                     </a>
                 {% endfor %}
-            </nav>
+            </div>
             
-            <section class="projects-grid">
+            
+            <section class="projects-grid" id="projectsGrid">
                 {% for projeto in projetos %}
                 <article class="project-card">
                     {% if projeto.imagem_inicio and projeto.imagem_inicio.url %}
@@ -39,28 +41,25 @@
                     </div>
                 </article>
                 {% endfor %}
-                
+            </section>
             
-
-        </section>
-        <div class="pagination">
-            <span class="step-links">
-                {% if insight.has_previous %}
-                    <a href="?page=1">&laquo; first</a>
-                    <a href="?page={{ insight.previous_page_number }}">previous</a>
-                {% endif %}
-        
-                <span class="current">
-                    Page {{ insight.number }} of {{ insight.paginator.num_pages }}.
+            <div class="pagination" id="pagination">
+                <span class="step-links">
+                    {% if projetos.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ projetos.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ projetos.number }} of {{ projetos.paginator.num_pages }}.
+                    </span>
+            
+                    {% if projetos.has_next %}
+                        <a href="?page={{ projetos.next_page_number }}">next</a>
+                        <a href="?page={{ projetos.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
                 </span>
-        
-                {% if insight.has_next %}
-                    <a href="?page={{ insight.next_page_number }}">next</a>
-                    <a href="?page={{ insight.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-        </section>
+            </div>
 
         <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
     </main>

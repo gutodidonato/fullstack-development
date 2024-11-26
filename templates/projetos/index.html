@@ -14,9 +14,9 @@
 
         <div class="project-details">
             <div class="project-info">
-                <p class="project-description">
-                    {{projeto.texto}}
-                </p>
+                <div class="project-description">
+                    {{ projeto.texto|safe }}
+                </div>
                 <div class="tech-stack">
                     {% for skill in skills %}
                         <span class="tech-tag">{{skill.name}}</span>
