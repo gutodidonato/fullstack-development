@@ -1,17 +1,17 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
-
-class SkillCategory(models.Model):
-    name = models.CharField(max_length=255)
-    resumo = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
     
 class PossibilidadeSkills(models.Model):
     name = models.CharField(max_length=255)
     
+    def __str__(self):
+        return self.name
+
+class SkillCategory(models.Model):
+    name = models.CharField(max_length=255)
+    resumo = models.TextField(blank=True)
+    ativo = models.BooleanField(default=True)
     def __str__(self):
         return self.name
 
@@ -22,14 +22,21 @@ class Skill(models.Model):
     skill_category = models.ForeignKey(SkillCategory, on_delete=models.SET_NULL, null=True)
     resumo = models.TextField()
     level = models.IntegerField(blank=True)
+    progress_bar = models.IntegerField(
+        blank=True, null=True
+    )
     ativo = models.BooleanField(default=True)
     imagem_inicio = models.ImageField(
         upload_to='skills/logos', blank=True, null=True
     )
     
+    @property
+    def has_image(self):
+        return self.imagem_inicio and self.imagem_inicio.name
     
     
     
+    titulo_descricao_1 = models.TextField(null=True, blank=True)
     descricao_1 = CKEditor5Field('descricao_1', config_name='extends', blank=True, null=True)
     possibilidades = models.ManyToManyField(
         PossibilidadeSkills, related_name='possibilidades', blank=True
@@ -54,6 +61,10 @@ class Skill(models.Model):
     )
     
     pos_destaque = models.IntegerField(blank=True, null=True, default=5)
+    
+    iframe = models.TextField(
+        null=True, blank=True
+    )
 
     def __str__(self):
         return self.name

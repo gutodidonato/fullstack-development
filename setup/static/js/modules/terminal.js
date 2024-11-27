@@ -4,8 +4,8 @@ export const initTerminal = () => {
         const text = `const developer = {
     name: "Your Name",
     role: "Full Stack Developer",
-    skills: ["JavaScript", "React", "Node.js"],
-    passion: "Building amazing web experiences"
+    skills: ["Python", "Javascript", "Typescript", ...],
+    passion: "Help peoples achieve their dreams"
 };`;
 
         let index = 0;

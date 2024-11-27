@@ -1257,3 +1257,164 @@ h1 {
         text-align: center;
     }
 }
+
+/*
+==========================================
+    SKILLS
+==========================================
+*/
+
+:root {
+    --bg-color: #000000;
+    --text-color: #ffffff;
+    --accent-color: #00ff00;
+    --card-bg: #111111;
+    --code-bg: #1e1e1e;
+}
+
+.estilo_skills{
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.skill-level {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.skill-level-indicator {
+    width: 300px;
+    height: 20px;
+    background-color: rgba(0, 255, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-level-fill {
+    height: 100%;
+    background-color: var(--accent-color);
+    width: 0;
+    transition: width 1.5s ease-out;
+}
+
+.skill-level-text {
+    color: var(--accent-color);
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+section {
+    background-color: var(--card-bg);
+    border: 1px solid var(--accent-color);
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 255, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 255, 0, 0.2);
+}
+
+h2 {
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.code-example {
+    background-color: var(--code-bg);
+    border-radius: 5px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--accent-color);
+}
+
+.html-demo {
+    border: 1px solid var(--accent-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    color: black;
+}
+
+.skill-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.skill-topic {
+    background-color: rgba(0, 255, 0, 0.1);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.skill-topic:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+}
+
+@media (max-width: 768px) {
+    .estilo_skills{
+    .container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .skill-level-indicator {
+        width: 200px;
+    }
+}
+}

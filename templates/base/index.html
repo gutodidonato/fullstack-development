@@ -18,7 +18,7 @@
                                 </svg>
                             </div>
                             <h3>Frontend</h3>
-                            <p>Modern web development with React</p>
+                            <p>Crafting interactive and responsive user interfaces.</p>
                         </div>
                         <div class="skill-item" data-level="intermediate">
                             <div class="skill-badge">
@@ -27,16 +27,7 @@
                                 </svg>
                             </div>
                             <h3>Backend</h3>
-                            <p>Server-side development with Node.js</p>
-                        </div>
-                        <div class="skill-item" data-level="expert">
-                            <div class="skill-badge">
-                                <svg viewBox="0 0 24 24" class="skill-svg">
-                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </div>
-                            <h3>Architecture</h3>
-                            <p>System design and scalable solutions</p>
+                            <p>Ensuring secure and efficient server-side operations.</p>
                         </div>
                     </div>
                 </div>
@@ -55,8 +46,7 @@
                         {% if skill.imagem_inicio and skill.imagem_inicio.url %}
 
                             {% include 'partials/components/skill_card.html' with cardname=skill.name cardlevel=skill.level cardimage=skill.imagem_inicio.url carddescription=skill.resumo %}
-                        {% else %}
-                        <p>Sem imagem associada a esta skill.</p>
+
                     {% endif %}
             
                     </li>
@@ -69,8 +59,8 @@
             <div class="skills-container">
                 <div class="skills-category creative-arsenal">
                     <div class="category-header">
-                        <div class="badge-icon creative">🎨</div>
-                        <h2>Creative Arsenal</h2>
+                        <div class="badge-icon creative">💪</div>
+                        <h2>Powerfull Arsenal</h2>
                     </div>
                     <div class="skills-grid">
                         <div class="skill-item" data-level="advanced">
@@ -79,17 +69,17 @@
                                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3>UI/UX Design</h3>
-                            <p>Interface design and user experience optimization</p>
+                            <h3>Frameworks</h3>
+                            <p>Building scalable and efficient application structures.</p>
                         </div>
                         <div class="skill-item" data-level="intermediate">
                             <div class="skill-badge">
-                                <svg viewBox="0 0 24 24" class="skill-svg">
-                                    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 1 1 2.5 8.242" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="skill-svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                                  </svg>                                  
                             </div>
-                            <h3>Motion Graphics</h3>
-                            <p>Dynamic animations and visual effects</p>
+                            <h3>Libraries</h3>
+                            <p>Adding dynamic features and functionality.</p>
                         </div>
                         <div class="skill-item" data-level="advanced">
                             <div class="skill-badge">
@@ -97,8 +87,8 @@
                                     <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </div>
-                            <h3>Digital Art</h3>
-                            <p>Digital illustration and graphic design</p>
+                            <h3>DataScience</h3>
+                            <p>Extracting insights from complex data.</p>
                         </div>
                     </div>
                 </div>
@@ -108,10 +98,10 @@
         <section>
             <div class="slider-elements">
                 <ul style="
-                    --time: {{ time_linguagens }}s;
-                    --quantity: {{ linguagens|length }};
+                    --time: {{ time_poderes }}s;
+                    --quantity: {{ poderes|length }};
                     ">
-                    {% for skill in linguagens %}
+                    {% for skill in poderes %}
                     <li style="--index: {{ forloop.counter }}">
                         {% include 'partials/components/skill_card.html' with cardname=skill.name cardlevel=skill.level cardimage=skill.imagem_inicio.url carddescription=skill.resumo %}
                     </li>
@@ -135,9 +125,10 @@
                                 <svg viewBox="0 0 24 24" class="skill-svg">
                                     <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
+                                
                             </div>
                             <h3>DevOps</h3>
-                            <p>CI/CD and cloud infrastructure</p>
+                            <p>Automating workflows and optimizing deployments.</p>
                         </div>
                         <div class="skill-item" data-level="intermediate">
                             <div class="skill-badge">
@@ -146,7 +137,7 @@
                                 </svg>
                             </div>
                             <h3>Testing</h3>
-                            <p>Unit and integration testing</p>
+                            <p>Guaranteeing software reliability through validation.</p>
                         </div>
                         <div class="skill-item" data-level="advanced">
                             <div class="skill-badge">
@@ -155,10 +146,30 @@
                                 </svg>
                             </div>
                             <h3>Performance</h3>
-                            <p>Optimization and monitoring</p>
+                            <p>Optimizing speed and resource efficiency.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="slider-elements">
+                <ul style="
+                    --time: {{ time_ferramentas }}s;
+                    --quantity: {{ ferramentas|length }};
+                    ">
+                    {% for skill in ferramentas %}
+                    <li class="reverse" style="--index: {{ forloop.counter }}">
+                        {% if skill.imagem_inicio and skill.imagem_inicio.url %}
+
+                            {% include 'partials/components/skill_card.html' with cardname=skill.name cardlevel=skill.level cardimage=skill.imagem_inicio.url carddescription=skill.resumo %}
+
+                    {% endif %}
+            
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </section>
 
@@ -168,46 +179,34 @@
                 <div class="tech-line"></div>
             </div>
             <div class="project-grid">
+                {% for projeto in projetos_destaque %}
                 <div class="project-card">
                     <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7" alt="Project 1">
+                        {% if projeto.has_image %}
+                        <img src="{{projeto.imagem_inicio.url}}" alt="Project 1">
+                        {% endif %}
                         <div class="project-overlay">
                             <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
+                                {% if projeto.link_github %}
                                 <a href="#" class="project-link">Source Code</a>
+                                {% endif %}
+                                {% if projeto.link_demo %}
+                                <a href="#" class="project-link">Live Demo</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>AI-Powered Analytics</h3>
-                        <p>Advanced data analysis platform with machine learning capabilities</p>
+                        <h3>{{projeto.nome}}</h3>
+                        <p>{{projeto.resumo}}</p>
                         <div class="project-tech">
-                            <span>Python</span>
-                            <span>TensorFlow</span>
-                            <span>React</span>
+                            {% for skill in projeto.skills.all %}
+                            <span>{{skill.name}}</span>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Project 2">
-                        <div class="project-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link">Source Code</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Cloud Infrastructure</h3>
-                        <p>Scalable cloud solutions for enterprise applications</p>
-                        <div class="project-tech">
-                            <span>AWS</span>
-                            <span>Docker</span>
-                            <span>Kubernetes</span>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </section>
 {% include 'partials/_footer.html' %}

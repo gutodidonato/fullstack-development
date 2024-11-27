@@ -1,0 +1,17 @@
+{% for projeto in projetos %}
+<article class="project-card">
+    {% if projeto.imagem_inicio and projeto.imagem_inicio.url %}
+    <img src="{{ projeto.imagem_inicio.url }}" alt="{{ projeto.nome }}" class="project-image lazy">
+    {% endif %}
+    <div class="project-info">
+        <h2 class="project-title">{{ projeto.nome }}</h2>
+        <p class="project-description">{{ projeto.resumo }}</p>
+        <div class="project-tags">
+            {% for skill in projeto.skills.all %}
+                <span class="tag">{{ skill.name }}</span>
+            {% endfor %}
+        </div>
+        <a href="{% url 'projeto' projeto.id %}" class="view-project">Ver Projeto</a>
+    </div>
+</article>
+{% endfor %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 #from smtp import enviar_mensagem
 from ..status.forms import ContactForms
 from django.contrib import messages
@@ -6,33 +6,40 @@ from django.contrib import messages
 from ..skills.models import Skill, SkillCategory
 from ..status.models import Status
 from ..projetos.models import Projeto
+from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
 
     status_destaque = Status.objects
-    projetos_destaque = Projeto.objects
+    projetos_destaque = Projeto.objects.filter(ativo=True).order_by('pos_destaque')[:3]
     
     try:
         linguagem_categoria = SkillCategory.objects.get(name="linguagem")
         skills_linguagem = Skill.objects.filter(
             skill_category=linguagem_categoria,
             ativo=True)
+    
         
-        print(linguagem_categoria)
-        print(skills_linguagem)
-        
-  
-        '''
-        
-        framework_categoria = SkillCategory.objects.get(name="framework")
+        poderes_framework_categoria = SkillCategory.objects.get(name="poder")
         skills_framework = Skill.objects.filter(
-            skill_category=framework_categoria,
+            skill_category=poderes_framework_categoria,
             ativo=True)
-        '''
+        
+        ferramentas = SkillCategory.objects.get(name="ferramenta")
+        skill_ferramenta = Skill.objects.filter(
+            skill_category=ferramentas,
+            ativo=True
+        )
+        
+        
+        
     except:
         skills_linguagem = []
         skills_framework = []
+        skill_ferramenta = []
     
     
     
@@ -45,12 +52,42 @@ def index(request):
     context = {
         'status_destaque': status_destaque,
         'projetos_destaque': projetos_destaque,
+        
+        
         'linguagens': skills_linguagem,
-        'time_linguagens': len(skills_linguagem) * 2
+        'poderes': skills_framework,
+        'ferramentas': skill_ferramenta,
+
+        
+        'time_ferramentas': len(skill_ferramenta) *3,
+        'time_poderes': len(skills_framework) * 3,
+        'time_linguagens': len(skills_linguagem) * 3
     }
     
     return render(request, 'base/index.html', context)
 
+
+
+
+@csrf_exempt
+def send_email(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        try:
+            send_mail(
+                subject=f"Mensagem de {name}",
+                message=message + '\n\nEmail: ' + email,
+                from_email='gutodidonato@gmail.com',  
+                recipient_list=['gutodidonato@gmail.com'],  
+            )
+            return redirect('index')
+        except Exception as e:
+            return JsonResponse({'error': f'Erro ao enviar email: {str(e)}'}, status=500)
+
+    return JsonResponse({'error': 'Método não permitido'}, status=405)
 
 '''def contato(request):
     form = ContactForms()

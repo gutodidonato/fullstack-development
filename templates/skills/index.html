@@ -1,0 +1,69 @@
+{% include 'partials/_head.html' with title="Projetos" %}
+{% include 'partials/_header.html' %}
+{% include 'partials/_dev.html' %}
+<section class="estilo_skills">
+<main class="container">
+    <div>
+        <h1>{{ skill.name }} {{ skill.extensao_name }}</h1>
+        <p class="subtitle">{{ skill.resumo }}</p> 
+    </div>
+
+    <div class="skill-level">
+        <div class="skill-level-indicator">
+            <div class="skill-level-fill" data-skill-level="{{ skill.progress_bar }}"></div>
+        </div>
+        <span class="skill-level-text">
+            {% if skill.progress_bar > 80 %} Avançado
+            {% elif skill.progress_bar > 50 %} Intermediário
+            {% else %} Básico
+            {% endif %}
+        </span>
+    </div>
+
+    <section>
+        <h2>{{ skill.titulo_descricao_1 }}</h2>
+        <p> {{skill.descricao_1}} </p>
+        <div class="skill-topics">
+            {% for topic in skill.possibilidades.all %}
+                <span class="skill-topic">{{ topic.name }}</span>
+            {% endfor %}
+        </div>
+
+        <img src="{{ skill.imagem_1.url }}" alt="{{ skill.name }}">
+    </section>
+
+    {% if skill.titulo_descricao_2 or skill.descricao_2 %}
+    <section>
+        <h2>{{skill.titulo_descricao_2}}</h2>
+        <div class="code-example">
+            <code>
+                {{skill.code_example_1}}
+            </code>
+            <p>{{ skill.descricao_2|safe }}</p>
+            <img src="{{ skill.imagem_2.url }}" alt="Imagem 1">
+        </div>
+    </section>
+    {% endif %}
+
+    {% if skill.titulo_descricao_3 or skill.descricao_3 %}
+    <section>
+        <h2>{{ skill.titulo_descricao_3 }}</h2>
+        <div class="code-example">
+            <code>
+                {{skill.code_example_2}}
+            </code>
+            <p>{{ skill.descricao_3|safe }}</p>
+            <img src="{{ skill.imagem_3.url }}" alt="Imagem 2">
+        </div>
+    </section>
+    {% endif %}
+
+    <section>
+        <h2>Recursos Modernos em {{ skill.name }}</h2>
+        <p>{{ skill.iframe|safe }}</p> 
+    </section>
+</main>
+</section>
+
+
+{% include 'partials/_footer.html' %}

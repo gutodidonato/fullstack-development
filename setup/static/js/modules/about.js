@@ -122,62 +122,6 @@ const initTypingEffect = () => {
 };
 
 
-/*MODAL CONTATO*/
-document.addEventListener('DOMContentLoaded', () => {
-    const connectOptions = document.querySelectorAll('.connect-option');
-    const modal = document.getElementById('connectModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    const closeModal = document.querySelector('.close-modal');
-
-    connectOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const platform = option.getAttribute('data-platform');
-            openModal(platform);
-        });
-    });
-
-    closeModal.addEventListener('click', () => {
-        modal.classList.remove('active');
-    });
-
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.remove('active');
-        }
-    });
-
-    function openModal(platform) {
-        modalTitle.textContent = `Connect via ${platform.charAt(0).toUpperCase() + platform.slice(1)}`;
-        
-        switch(platform) {
-            case 'github':
-                modalBody.innerHTML = '<p>Check out my projects on GitHub:</p><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github.com/yourusername</a>';
-                break;
-            case 'linkedin':
-                modalBody.innerHTML = '<p>Let\'s connect on LinkedIn:</p><a href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourusername</a>';
-                break;
-            case 'email':
-                modalBody.innerHTML = `
-                    <form class="connect-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="4" required></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
-                `;
-                const form = modalBody.querySelector('form');
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    alert('Message sent successfully!');
-                    modal.classList.remove('active');
-                });
-                break;
-        }
-
-        modal.classList.add('active');
-    }
-});
 document.addEventListener('DOMContentLoaded', () => {
     const techBackground = document.getElementById('background-footer');
     const numberOfLines = 15;

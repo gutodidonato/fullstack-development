@@ -27,13 +27,67 @@
         </div>
     </div>
 
-    <div class="modal" id="connectModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 id="modalTitle"></h3>
-            <div id="modalBody"></div>
-        </div>
+<div id="connectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modalTitle">Connect</h2>
+        <div id="modalBody"></div>
     </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const connectOptions = document.querySelectorAll('.connect-option');
+        const modal = document.getElementById('connectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const closeModal = document.querySelector('.close-modal');
+
+        connectOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const platform = option.getAttribute('data-platform');
+                openModal(platform);
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        function openModal(platform) {
+            modalTitle.textContent = `Connect via ${platform.charAt(0).toUpperCase() + platform.slice(1)}`;
+            
+            switch(platform) {
+                case 'github':
+                    modalBody.innerHTML = '<p>Check out my projects on GitHub:</p><a href="https://github.com/gutodidonato" target="_blank" rel="noopener noreferrer">github.com/yourusername</a>';
+                    break;
+                case 'linkedin':
+                    modalBody.innerHTML = '<p>Let\'s connect on LinkedIn:</p><a href="https://www.linkedin.com/in/luis-didonato-66746a250/" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourusername</a>';
+                    break;
+                case 'email':
+                    modalBody.innerHTML = `
+                        <form class="connect-form" method="post" action="{% url 'send_email' %}">
+                            {% csrf_token %}
+                            <input type="text" name="name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+                            <button type="submit">Send Message</button>
+                        </form>
+                    `;
+                    break;
+            }
+
+            modal.classList.add('active');
+        }
+    });
+</script>
+
 </section>
 <section class="footer-comand">
     <footer class="footer">
@@ -43,20 +97,11 @@
                 <h3>Navigation</h3>
                 <ul class="footer-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
-                <h3>Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#docs">Documentation</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#support">Support</a></li>
-                </ul>
-            </div>
+
             <div class="footer-section">
                 <h3>Connect</h3>
                 <div class="social-icons">
@@ -83,6 +128,7 @@
         </div>
     </footer>
 </section>
+<!--
 <div class="level-progress-container">
     <div class="level-info">
         <span>Level <span id="current-level">1</span> -</span>
@@ -92,12 +138,8 @@
         <div class="level-progress" id="xp-progress"></div>
     </div>
 </div>
+-->
 
 <script type="module" src="{% static '/js/main.js' %}"></script>
-<link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
-<a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=19549028862&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es">
-  <div class="rwb-tooltip">Fale Conosco</div>
-  <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
-</a>
 </body>
 </html>

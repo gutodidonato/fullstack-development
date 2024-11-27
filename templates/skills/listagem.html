@@ -1,0 +1,67 @@
+{% include 'partials/_head.html' with title="Projetos" %}
+{% include 'partials/_header.html' %}
+{% include 'partials/_dev.html' %}
+<div class="container-listagem">
+    <div class="limitador">
+
+        <div class="project-header">
+            <h1>Portfólio de Skills</h1>
+            <p class="subtitle">Explorando o futuro através da tecnologia</p>
+        </div>
+        
+        <main>
+            <div class="category-nav" aria-label="Categorias de Skills">
+                <a href="{% url 'listagem_skill' %}" class="category-btn" aria-pressed="true" data-id="">
+                    <span>Todos</span>
+                </a>
+                {% for categoria in categorias %}
+                    <a href="{% url 'listagem_skill_categoria' categoria.id %}" 
+                       class="category-btn" aria-pressed="false" data-id="{{ categoria.id }}">
+                        <span>{{ categoria.nome }}</span>
+                    </a>
+                {% endfor %}
+            </div>
+            
+            <section class="skills-grid" id="skillsGrid">
+                {% for skill in skills %}
+                <article class="skill-card">
+                    {% if skill.imagem_inicio and skill.imagem_inicio.url %}
+                    <img src="{{ skill.imagem_inicio.url }}" alt="{{ skill.nome }}" class="skill-image lazy">
+                    {% endif %}
+                    <div class="skill-info">
+                        <h2 class="skill-title">{{ skill.nome }}</h2>
+                        <p class="skill-description">{{ skill.resumo }}</p>
+                        <div class="skill-tags">
+                            {% for tag in skill.possibilidades.all %}
+                                <span class="tag">{{ tag.name }}</span>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'skill' skill.id %}" class="view-skill">Ver Skill</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </section>
+            
+            <div class="pagination" id="pagination">
+                <span class="step-links">
+                    {% if skills.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ skills.previous_page_number }}">previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ skills.number }} of {{ skills.paginator.num_pages }}.
+                    </span>
+            
+                    {% if skills.has_next %}
+                        <a href="?page={{ skills.next_page_number }}">next</a>
+                        <a href="?page={{ skills.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+        <div class="loading-spinner" id="loadingSpinner" style="display: none;"></div>
+    </main>
+</div>
+</div>
+{% include 'partials/_footer.html' %}

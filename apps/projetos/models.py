@@ -22,7 +22,7 @@ class Projeto(models.Model):
     nome = models.CharField(max_length=255, blank=True)
     resumo = models.TextField(blank=True)
     imagem_inicio = models.ImageField(
-        upload_to='projeto/start', blank=True
+        upload_to='projeto/start', blank=True, null=True
     )
     texto = CKEditor5Field(
         'descricao', config_name='extends'
@@ -57,5 +57,9 @@ class Projeto(models.Model):
     
     data_criacao = models.DateTimeField(default=timezone.now, blank=False)
 
+    @property
+    def has_image(self):
+        return self.imagem_inicio and self.imagem_inicio.name
+    
     def __str__(self):
         return self.nome
