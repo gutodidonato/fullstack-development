@@ -2,7 +2,7 @@ export const initTerminal = () => {
     const terminalContent = document.querySelector('.typing-effect');
     if (terminalContent) {
         const text = `const developer = {
-    name: "Your Name",
+    name: "Luis Augusto Didonato",
     role: "Full Stack Developer",
     skills: ["Python", "Javascript", "Typescript", ...],
     passion: "Help peoples achieve their dreams"
