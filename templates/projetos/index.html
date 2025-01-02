@@ -7,7 +7,7 @@
             <h1 class="project-title">{{projeto.nome}}</h1>
             <p class="project-subtitle">{{projeto.resumo}}</p>
         </div>
-        {% if projeto.imagem_inicio.url %}
+        {% if projeto.imagem_inicio.url and projeto.imagem_inicio %}
         <div class="project-image-container">
             <img src="{{projeto.imagem_inicio.url}}" alt="Visão geral do Projeto Inovador" class="project-image">
         </div>
@@ -26,26 +26,26 @@
             </div>
             <div class="project-meta">
                 <div class="meta-item">
-                    <span class="meta-label">Data de Início:</span>
+                    <span class="meta-label">Start date:</span>
                     <span>{{projeto.data_inicio}}</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Data de Conclusão:</span>
+                    <span class="meta-label">Completion date:</span>
                     <span>{{projeto.data_fim}}</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Cliente:</span>
+                    <span class="meta-label">Client:</span>
                     <span>{{projeto.cliente}}</span>
                 </div>
                 <div class="meta-item">
-                    <span class="meta-label">Categoria:</span>
+                    <span class="meta-label">Category:</span>
                     <span>{{projeto.categoria_projeto}}</span>
                 </div>
             </div>
         </div>
 
         <section class="project-gallery">
-            <h2 class="gallery-title">Galeria do Projeto</h2>
+            <h2 class="gallery-title">Project images</h2>
             <div class="gallery-grid">
                 <div class="gallery-item">
                     {% if projeto.imagem_galeria_1 %}
