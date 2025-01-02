@@ -158,8 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', event => {
             event.preventDefault();
 
-            const categoryId = button.getAttribute('data-id'); // Obtém o ID da categoria
-            loadingSpinner.style.display = 'block'; // Mostra o spinner de carregamento
+            const categoryId = button.getAttribute('data-id'); 
+            loadingSpinner.style.display = 'block';
 
             console.log(categoryId)
             console.log(`/projetos/${categoryId}}`)
@@ -173,17 +173,22 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then((response) => {
                     if (!response.ok) {
-                        throw new Error(`Erro: ${response.status}`); // Captura o status HTTP (como 500)
+                        throw new Error(`Erro: ${response.status}`); 
                     }
-                    return response.json(); // Tenta parsear a resposta como JSON
+                    return response.json(); 
                 })
                 .then((data) => {
-                    // Insere os projetos e a paginação no DOM
+                    
                     document.getElementById('projectsGrid').innerHTML = data.projects_html;
                     document.getElementById('pagination').innerHTML = data.pagination_html;
+                    setTimeout(
+                        () => {
+                            loadingSpinner.style.display = 'none';
+                        }, 2000
+                    )
                 })
                 .catch((error) => {
-                    console.error('Erro ao carregar os dados:', error); // Log do erro
+                    console.error('Erro ao carregar os dados:', error);
                 });
         });
     });
