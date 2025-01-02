@@ -45,7 +45,7 @@ def listagem_projeto(request, categoria_id=None):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':  # AJAX
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest': 
         projects_html = render_to_string('projetos/_projetos_grid.html', {'projetos': page_obj})
         pagination_html = render_to_string('projetos/_pagination.html', {'projetos': page_obj})
         return JsonResponse({

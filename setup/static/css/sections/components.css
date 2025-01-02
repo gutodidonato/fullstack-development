@@ -467,6 +467,12 @@ footer {
     align-items: center;
     gap: 30px;
   }
+
+  .back-content strong{
+      position:relative;
+      top: -30px;
+      font-size: 16px;
+  }
   
   .front {
     transform: rotateY(180deg);

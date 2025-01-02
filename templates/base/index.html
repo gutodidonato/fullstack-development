@@ -188,10 +188,13 @@
                         <div class="project-overlay">
                             <div class="project-links">
                                 {% if projeto.link_github %}
-                                <a href="#" class="project-link">Source Code</a>
+                                <a href="{{projeto.link_github}}" class="project-link">Source Code</a>
                                 {% endif %}
                                 {% if projeto.link_demo %}
-                                <a href="#" class="project-link">Live Demo</a>
+                                <a href="{{projeto.link_demo}}" class="project-link">Live Demo</a>
+                                {% endif %}
+                                {% if projeto.link_demo %}
+                                <a href="{% url 'projeto' projeto.id %}" class="project-link">About</a>
                                 {% endif %}
                             </div>
                         </div>

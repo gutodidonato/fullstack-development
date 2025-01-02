@@ -7,10 +7,11 @@
             <h1 class="project-title">{{projeto.nome}}</h1>
             <p class="project-subtitle">{{projeto.resumo}}</p>
         </div>
-
+        {% if projeto.imagem_inicio.url %}
         <div class="project-image-container">
-            <img src="/placeholder.svg?height=400&width=1200" alt="Visão geral do Projeto Inovador" class="project-image">
+            <img src="{{projeto.imagem_inicio.url}}" alt="Visão geral do Projeto Inovador" class="project-image">
         </div>
+        {% endif %}
 
         <div class="project-details">
             <div class="project-info">

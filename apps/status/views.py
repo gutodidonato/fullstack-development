@@ -33,9 +33,7 @@ def index(request):
             skill_category=ferramentas,
             ativo=True
         )
-        
-        
-        
+    
     except:
         skills_linguagem = []
         skills_framework = []
@@ -44,11 +42,14 @@ def index(request):
     
     
     
+    
     for skill in skills_linguagem:
         print(skill.imagem_inicio.url)
     
     
-    
+    print(skill_ferramenta)
+    print(skills_framework)
+    print(skills_linguagem)
     context = {
         'status_destaque': status_destaque,
         'projetos_destaque': projetos_destaque,
