@@ -202,6 +202,9 @@
     .tech-stack, .tech-badges {
         justify-content: center;
     }
+    .code-terminal {
+       min-width: 280px;
+}
 }
 
 .slider-elements{
